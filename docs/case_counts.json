@@ -1,0 +1,812 @@
+[
+ {
+  "repo": "Altece__Reggie",
+  "hf": 5,
+  "tf": 4,
+  "ht": 10,
+  "tt": 46,
+  "ha": 38,
+  "ta": 108
+ },
+ {
+  "repo": "AppCron__ACInteractor",
+  "hf": 8,
+  "tf": 6,
+  "ht": 34,
+  "tt": 46,
+  "ha": 59,
+  "ta": 126
+ },
+ {
+  "repo": "ArtSabintsev__Guitar",
+  "hf": 6,
+  "tf": 8,
+  "ht": 28,
+  "tt": 146,
+  "ha": 113,
+  "ta": 212
+ },
+ {
+  "repo": "AsyncNinja__AsyncNinja",
+  "hf": 35,
+  "tf": 3,
+  "ht": 249,
+  "tt": 39,
+  "ha": 556,
+  "ta": 110
+ },
+ {
+  "repo": "Danappelxx__MuttonChop",
+  "hf": 7,
+  "tf": 5,
+  "ht": 167,
+  "tt": 88,
+  "ha": 210,
+  "ta": 149
+ },
+ {
+  "repo": "Daniel1of1__CSwiftV",
+  "hf": 3,
+  "tf": 1,
+  "ht": 16,
+  "tt": 20,
+  "ha": 32,
+  "ta": 91
+ },
+ {
+  "repo": "FabrizioBrancati__BFKit-Swift",
+  "hf": 44,
+  "tf": 0,
+  "ht": 391,
+  "tt": 0,
+  "ha": 855,
+  "ta": 0
+ },
+ {
+  "repo": "FabrizioBrancati__Queuer",
+  "hf": 13,
+  "tf": 0,
+  "ht": 39,
+  "tt": 0,
+  "ha": 109,
+  "ta": 0
+ },
+ {
+  "repo": "HHuckebein__Base64",
+  "hf": 3,
+  "tf": 1,
+  "ht": 26,
+  "tt": 7,
+  "ha": 62,
+  "ta": 24
+ },
+ {
+  "repo": "JJC1138__tiny-events",
+  "hf": 3,
+  "tf": 1,
+  "ht": 7,
+  "tt": 12,
+  "ha": 11,
+  "ta": 47
+ },
+ {
+  "repo": "JohnSundell__Files",
+  "hf": 2,
+  "tf": 0,
+  "ht": 66,
+  "tt": 0,
+  "ha": 167,
+  "ta": 0
+ },
+ {
+  "repo": "Michael-Vorontsov__ResultPromises",
+  "hf": 1,
+  "tf": 5,
+  "ht": 5,
+  "tt": 28,
+  "ha": 5,
+  "ta": 77
+ },
+ {
+  "repo": "MiniDOM__MiniDOM",
+  "hf": 19,
+  "tf": 5,
+  "ht": 56,
+  "tt": 63,
+  "ha": 205,
+  "ta": 98
+ },
+ {
+  "repo": "OlegKetrar__TaskKit",
+  "hf": 1,
+  "tf": 5,
+  "ht": 14,
+  "tt": 66,
+  "ha": 72,
+  "ta": 122
+ },
+ {
+  "repo": "RNCryptor__RNCryptor",
+  "hf": 6,
+  "tf": 0,
+  "ht": 49,
+  "tt": 0,
+  "ha": 44,
+  "ta": 0
+ },
+ {
+  "repo": "SteveBarnegren__SBSwiftUtils",
+  "hf": 25,
+  "tf": 30,
+  "ht": 152,
+  "tt": 465,
+  "ha": 334,
+  "ta": 780
+ },
+ {
+  "repo": "SwiftKitz__Storez",
+  "hf": 7,
+  "tf": 7,
+  "ht": 26,
+  "tt": 72,
+  "ha": 50,
+  "ta": 116
+ },
+ {
+  "repo": "SwiftyBeaver__AES256CBC",
+  "hf": 2,
+  "tf": 0,
+  "ht": 5,
+  "tt": 0,
+  "ha": 26,
+  "ta": 0
+ },
+ {
+  "repo": "SwiftyBeaver__SwiftyBeaver",
+  "hf": 11,
+  "tf": 0,
+  "ht": 233,
+  "tt": 0,
+  "ha": 490,
+  "ta": 0
+ },
+ {
+  "repo": "Szaq__BinarySwift",
+  "hf": 2,
+  "tf": 4,
+  "ht": 56,
+  "tt": 80,
+  "ha": 73,
+  "ta": 170
+ },
+ {
+  "repo": "YOCKOW__SwiftTimeSpecification",
+  "hf": 1,
+  "tf": 2,
+  "ht": 8,
+  "tt": 42,
+  "ha": 15,
+  "ta": 83
+ },
+ {
+  "repo": "YR__Cachyr",
+  "hf": 5,
+  "tf": 0,
+  "ht": 58,
+  "tt": 0,
+  "ha": 215,
+  "ta": 0
+ },
+ {
+  "repo": "a2__MessagePack.swift",
+  "hf": 19,
+  "tf": 7,
+  "ht": 174,
+  "tt": 164,
+  "ha": 357,
+  "ta": 455
+ },
+ {
+  "repo": "abdullahselek__Lighty",
+  "hf": 1,
+  "tf": 2,
+  "ht": 8,
+  "tt": 21,
+  "ha": 11,
+  "ta": 33
+ },
+ {
+  "repo": "akesson__LogCentral",
+  "hf": 11,
+  "tf": 7,
+  "ht": 31,
+  "tt": 52,
+  "ha": 49,
+  "ta": 62
+ },
+ {
+  "repo": "asensei__Result",
+  "hf": 2,
+  "tf": 1,
+  "ht": 2,
+  "tt": 15,
+  "ha": 14,
+  "ta": 32
+ },
+ {
+  "repo": "avielg__ExcelExport",
+  "hf": 3,
+  "tf": 0,
+  "ht": 15,
+  "tt": 0,
+  "ha": 40,
+  "ta": 0
+ },
+ {
+  "repo": "boxcast__boxcast-sdk-apple",
+  "hf": 10,
+  "tf": 11,
+  "ht": 22,
+  "tt": 87,
+  "ha": 69,
+  "ta": 220
+ },
+ {
+  "repo": "cloudant__swift-cloudant",
+  "hf": 20,
+  "tf": 15,
+  "ht": 128,
+  "tt": 147,
+  "ha": 594,
+  "ta": 542
+ },
+ {
+  "repo": "davecom__SwiftGraph",
+  "hf": 26,
+  "tf": 13,
+  "ht": 165,
+  "tt": 167,
+  "ha": 795,
+  "ta": 643
+ },
+ {
+  "repo": "dbsystel__DBNetworkStack",
+  "hf": 20,
+  "tf": 10,
+  "ht": 79,
+  "tt": 86,
+  "ha": 166,
+  "ta": 287
+ },
+ {
+  "repo": "delba__TextAttributes",
+  "hf": 1,
+  "tf": 6,
+  "ht": 7,
+  "tt": 35,
+  "ha": 50,
+  "ta": 122
+ },
+ {
+  "repo": "devxoul__Carte",
+  "hf": 1,
+  "tf": 3,
+  "ht": 9,
+  "tt": 32,
+  "ha": 17,
+  "ta": 67
+ },
+ {
+  "repo": "devxoul__SwiftyColor",
+  "hf": 1,
+  "tf": 1,
+  "ht": 3,
+  "tt": 13,
+  "ha": 6,
+  "ta": 48
+ },
+ {
+  "repo": "devxoul__SwiftyImage",
+  "hf": 1,
+  "tf": 1,
+  "ht": 2,
+  "tt": 27,
+  "ha": 3,
+  "ta": 40
+ },
+ {
+  "repo": "devxoul__Then",
+  "hf": 1,
+  "tf": 1,
+  "ht": 7,
+  "tt": 12,
+  "ha": 9,
+  "ta": 24
+ },
+ {
+  "repo": "diejmon__Preferences",
+  "hf": 3,
+  "tf": 4,
+  "ht": 5,
+  "tt": 34,
+  "ha": 16,
+  "ta": 47
+ },
+ {
+  "repo": "dnlosx__Cart",
+  "hf": 3,
+  "tf": 0,
+  "ht": 11,
+  "tt": 0,
+  "ha": 30,
+  "ta": 0
+ },
+ {
+  "repo": "drewag__Swiftlier",
+  "hf": 39,
+  "tf": 0,
+  "ht": 177,
+  "tt": 0,
+  "ha": 1301,
+  "ta": 0
+ },
+ {
+  "repo": "e-Sixt__Swen",
+  "hf": 1,
+  "tf": 4,
+  "ht": 17,
+  "tt": 49,
+  "ha": 19,
+  "ta": 147
+ },
+ {
+  "repo": "ekurutepe__Iguazu",
+  "hf": 10,
+  "tf": 10,
+  "ht": 42,
+  "tt": 141,
+  "ha": 99,
+  "ta": 370
+ },
+ {
+  "repo": "elegion__ios-Flamingo",
+  "hf": 3,
+  "tf": 40,
+  "ht": 8,
+  "tt": 225,
+  "ha": 32,
+  "ta": 427
+ },
+ {
+  "repo": "emaloney__CleanroomLogger",
+  "hf": 4,
+  "tf": 41,
+  "ht": 5,
+  "tt": 199,
+  "ha": 17,
+  "ta": 499
+ },
+ {
+  "repo": "fcanas__Bayes",
+  "hf": 3,
+  "tf": 5,
+  "ht": 10,
+  "tt": 61,
+  "ha": 48,
+  "ta": 147
+ },
+ {
+  "repo": "fumiyasac__handMadeCalendarAdvance",
+  "hf": 1,
+  "tf": 2,
+  "ht": 9,
+  "tt": 14,
+  "ha": 25,
+  "ta": 50
+ },
+ {
+  "repo": "gonzalezreal__Markup",
+  "hf": 2,
+  "tf": 5,
+  "ht": 15,
+  "tt": 56,
+  "ha": 15,
+  "ta": 90
+ },
+ {
+  "repo": "hectr__swift-idioms",
+  "hf": 22,
+  "tf": 0,
+  "ht": 95,
+  "tt": 0,
+  "ha": 154,
+  "ta": 0
+ },
+ {
+  "repo": "horothesun__ImmutableGraph",
+  "hf": 12,
+  "tf": 5,
+  "ht": 91,
+  "tt": 51,
+  "ha": 120,
+  "ta": 117
+ },
+ {
+  "repo": "jflinter__Dwifft",
+  "hf": 1,
+  "tf": 10,
+  "ht": 10,
+  "tt": 66,
+  "ha": 8,
+  "ta": 177
+ },
+ {
+  "repo": "jjorgemoura__sapataz",
+  "hf": 2,
+  "tf": 3,
+  "ht": 2,
+  "tt": 28,
+  "ha": 4,
+  "ta": 39
+ },
+ {
+  "repo": "jverkoey__FigmaKit",
+  "hf": 8,
+  "tf": 14,
+  "ht": 11,
+  "tt": 141,
+  "ha": 67,
+  "ta": 531
+ },
+ {
+  "repo": "kean__Pill",
+  "hf": 9,
+  "tf": 4,
+  "ht": 111,
+  "tt": 85,
+  "ha": 217,
+  "ta": 167
+ },
+ {
+  "repo": "ken0nek__SwiftMeasurement",
+  "hf": 2,
+  "tf": 0,
+  "ht": 1,
+  "tt": 0,
+  "ha": 8,
+  "ta": 0
+ },
+ {
+  "repo": "klundberg__CopyOnWrite",
+  "hf": 2,
+  "tf": 1,
+  "ht": 4,
+  "tt": 8,
+  "ha": 12,
+  "ta": 41
+ },
+ {
+  "repo": "kolyasev__SwiftJSONRPC",
+  "hf": 2,
+  "tf": 11,
+  "ht": 6,
+  "tt": 93,
+  "ha": 23,
+  "ta": 265
+ },
+ {
+  "repo": "krzysztofzablocki__Strongify",
+  "hf": 2,
+  "tf": 0,
+  "ht": 3,
+  "tt": 0,
+  "ha": 7,
+  "ta": 0
+ },
+ {
+  "repo": "lucas34__SwiftQueue",
+  "hf": 21,
+  "tf": 5,
+  "ht": 74,
+  "tt": 40,
+  "ha": 140,
+  "ta": 89
+ },
+ {
+  "repo": "malcommac__Hydra",
+  "hf": 2,
+  "tf": 20,
+  "ht": 46,
+  "tt": 155,
+  "ha": 82,
+  "ta": 369
+ },
+ {
+  "repo": "mattrubin__Bases",
+  "hf": 5,
+  "tf": 2,
+  "ht": 11,
+  "tt": 10,
+  "ha": 39,
+  "ta": 40
+ },
+ {
+  "repo": "maximkhatskevich__MKHAPIClient",
+  "hf": 2,
+  "tf": 1,
+  "ht": 2,
+  "tt": 5,
+  "ha": 6,
+  "ta": 16
+ },
+ {
+  "repo": "michael-groble__Geohash",
+  "hf": 6,
+  "tf": 3,
+  "ht": 15,
+  "tt": 58,
+  "ha": 35,
+  "ta": 126
+ },
+ {
+  "repo": "michaelnisi__patron",
+  "hf": 1,
+  "tf": 0,
+  "ht": 11,
+  "tt": 0,
+  "ha": 47,
+  "ta": 0
+ },
+ {
+  "repo": "mixpanel__mixpanel-swift",
+  "hf": 2,
+  "tf": 26,
+  "ht": 6,
+  "tt": 225,
+  "ha": 28,
+  "ta": 563
+ },
+ {
+  "repo": "mkeiser__SwiftUTI",
+  "hf": 1,
+  "tf": 0,
+  "ht": 7,
+  "tt": 0,
+  "ha": 14,
+  "ta": 0
+ },
+ {
+  "repo": "naoty__Timepiece",
+  "hf": 4,
+  "tf": 4,
+  "ht": 39,
+  "tt": 69,
+  "ha": 107,
+  "ta": 323
+ },
+ {
+  "repo": "nekowen__GeoHex3.swift",
+  "hf": 2,
+  "tf": 3,
+  "ht": 9,
+  "tt": 48,
+  "ha": 35,
+  "ta": 67
+ },
+ {
+  "repo": "nh7a__Geohash",
+  "hf": 3,
+  "tf": 1,
+  "ht": 3,
+  "tt": 12,
+  "ha": 10,
+  "ta": 51
+ },
+ {
+  "repo": "niklassaers__PackStream-Swift",
+  "hf": 13,
+  "tf": 3,
+  "ht": 59,
+  "tt": 32,
+  "ha": 141,
+  "ta": 53
+ },
+ {
+  "repo": "osteslag__Changeset",
+  "hf": 1,
+  "tf": 2,
+  "ht": 14,
+  "tt": 17,
+  "ha": 51,
+  "ta": 39
+ },
+ {
+  "repo": "palle-k__Covfefe",
+  "hf": 13,
+  "tf": 0,
+  "ht": 89,
+  "tt": 0,
+  "ha": 505,
+  "ta": 0
+ },
+ {
+  "repo": "petrpavlik__GeoSwift",
+  "hf": 2,
+  "tf": 1,
+  "ht": 1,
+  "tt": 15,
+  "ha": 4,
+  "ta": 29
+ },
+ {
+  "repo": "phimage__Prephirences",
+  "hf": 2,
+  "tf": 10,
+  "ht": 26,
+  "tt": 141,
+  "ha": 155,
+  "ta": 432
+ },
+ {
+  "repo": "pitiphong-p__URLQueryItemEncoder",
+  "hf": 2,
+  "tf": 0,
+  "ht": 6,
+  "tt": 0,
+  "ha": 109,
+  "ta": 0
+ },
+ {
+  "repo": "pvieito__PythonKit",
+  "hf": 3,
+  "tf": 0,
+  "ht": 31,
+  "tt": 0,
+  "ha": 178,
+  "ta": 0
+ },
+ {
+  "repo": "richardpiazza__MiseEnPlace",
+  "hf": 24,
+  "tf": 15,
+  "ht": 129,
+  "tt": 153,
+  "ha": 700,
+  "ta": 477
+ },
+ {
+  "repo": "satishbabariya__SwiftyContacts",
+  "hf": 1,
+  "tf": 0,
+  "ht": 4,
+  "tt": 0,
+  "ha": 10,
+  "ta": 0
+ },
+ {
+  "repo": "scottkawai__sendgrid-swift",
+  "hf": 52,
+  "tf": 32,
+  "ht": 110,
+  "tt": 265,
+  "ha": 541,
+  "ta": 862
+ },
+ {
+  "repo": "seanmcneil__Thrimer",
+  "hf": 3,
+  "tf": 1,
+  "ht": 8,
+  "tt": 13,
+  "ha": 32,
+  "ta": 45
+ },
+ {
+  "repo": "soffes__Crypto",
+  "hf": 4,
+  "tf": 4,
+  "ht": 14,
+  "tt": 75,
+  "ha": 14,
+  "ta": 185
+ },
+ {
+  "repo": "soffes__HotKey",
+  "hf": 2,
+  "tf": 0,
+  "ht": 4,
+  "tt": 0,
+  "ha": 10,
+  "ta": 0
+ },
+ {
+  "repo": "stevebrambilla__autolayout-expressions",
+  "hf": 16,
+  "tf": 19,
+  "ht": 74,
+  "tt": 178,
+  "ha": 44,
+  "ta": 549
+ },
+ {
+  "repo": "tomlokhorst__swift-cancellationtoken",
+  "hf": 1,
+  "tf": 1,
+  "ht": 8,
+  "tt": 10,
+  "ha": 6,
+  "ta": 21
+ },
+ {
+  "repo": "trill-lang__FileCheck",
+  "hf": 10,
+  "tf": 0,
+  "ht": 27,
+  "tt": 0,
+  "ha": 70,
+  "ta": 0
+ },
+ {
+  "repo": "venmo__DVR",
+  "hf": 2,
+  "tf": 0,
+  "ht": 15,
+  "tt": 0,
+  "ha": 35,
+  "ta": 0
+ },
+ {
+  "repo": "vknabel__EasyInject",
+  "hf": 12,
+  "tf": 3,
+  "ht": 35,
+  "tt": 44,
+  "ha": 54,
+  "ta": 125
+ },
+ {
+  "repo": "vrisch__Starburst",
+  "hf": 2,
+  "tf": 3,
+  "ht": 11,
+  "tt": 38,
+  "ha": 37,
+  "ta": 103
+ },
+ {
+  "repo": "woxtu__NSString-RemoveEmoji",
+  "hf": 3,
+  "tf": 1,
+  "ht": 2,
+  "tt": 32,
+  "ha": 32,
+  "ta": 32
+ },
+ {
+  "repo": "yaroslav-zhurakovskiy__PainlessInjection",
+  "hf": 13,
+  "tf": 7,
+  "ht": 33,
+  "tt": 36,
+  "ha": 26,
+  "ta": 112
+ },
+ {
+  "repo": "yoichitgy__Swinject",
+  "hf": 26,
+  "tf": 18,
+  "ht": 157,
+  "tt": 149,
+  "ha": 266,
+  "ta": 370
+ },
+ {
+  "repo": "yume190__JSONDecodeKit",
+  "hf": 2,
+  "tf": 13,
+  "ht": 13,
+  "tt": 114,
+  "ha": 73,
+  "ta": 276
+ }
+]

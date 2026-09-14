@@ -1,0 +1,307 @@
+<title>Before You Publish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --paper:#F5F6F8; --raised:#FFFFFF; --ink:#151922; --ink-soft:#4A5060; --ink-faint:#767D8D;
+  --rule:#DFE2E8; --rule-soft:#EAECF0;
+  --accent:#E8562A; --accent-soft:#FBE7E0; --accent-ink:#A8360F;
+  --pass:#2F7D5B; --pass-soft:#E1F0E8;
+  --warn:#9A6B1F; --warn-soft:#F6EDDC;
+  --fail:#7D2E28; --fail-soft:#F4E3E1;
+  --measure:66ch;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#101319; --raised:#171C25; --ink:#E8EAEF; --ink-soft:#A6ADBB; --ink-faint:#79808F;
+  --rule:#252B37; --rule-soft:#1E242E;
+  --accent:#FF7A52; --accent-soft:#2C1A14; --accent-ink:#FFB79E;
+  --pass:#5FBE90; --pass-soft:#15271F;
+  --warn:#D5A253; --warn-soft:#261F12;
+  --fail:#E08A80; --fail-soft:#2A1917;
+}}
+:root[data-theme="dark"]{
+  --paper:#101319; --raised:#171C25; --ink:#E8EAEF; --ink-soft:#A6ADBB; --ink-faint:#79808F;
+  --rule:#252B37; --rule-soft:#1E242E;
+  --accent:#FF7A52; --accent-soft:#2C1A14; --accent-ink:#FFB79E;
+  --pass:#5FBE90; --pass-soft:#15271F;
+  --warn:#D5A253; --warn-soft:#261F12;
+  --fail:#E08A80; --fail-soft:#2A1917;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;text-wrap:balance;letter-spacing:-.02em}
+code,.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;font-size:.88em}
+.wrap{max-width:940px;margin:0 auto;padding:0 28px}
+.prose{max-width:var(--measure)}
+.prose p{margin:0 0 1.1em}
+
+header.top{border-bottom:1px solid var(--rule);background:var(--raised)}
+.top-in{display:flex;gap:12px;align-items:baseline;padding:16px 28px;max-width:940px;margin:0 auto}
+.wordmark{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15px}
+.wordmark .dot{color:var(--accent)}
+.top-in .sub{font-size:13px;color:var(--ink-faint);font-family:"Bricolage Grotesque",sans-serif}
+
+.hero{padding:56px 0 34px}
+.eyebrow{font-family:"Bricolage Grotesque",sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:600}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .eyebrow{color:var(--accent)}}
+:root[data-theme="dark"] .eyebrow{color:var(--accent)}
+h1{font-size:clamp(34px,5.4vw,54px);line-height:1.04;font-weight:800;margin:14px 0 0}
+.standfirst{font-size:20px;color:var(--ink-soft);max-width:56ch;margin:18px 0 0;font-style:italic}
+
+section{padding:46px 0;border-top:1px solid var(--rule-soft)}
+.sec-head{display:flex;gap:14px;align-items:baseline;margin:0 0 20px}
+.sec-num{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--accent);font-weight:600;padding-top:5px}
+h2{font-size:clamp(24px,3.2vw,31px);font-weight:800;margin:0;line-height:1.14}
+h3{font-size:18px;font-weight:600;margin:28px 0 9px}
+.lede{font-size:19px;color:var(--ink-soft);max-width:var(--measure)}
+
+.plain{background:var(--raised);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:3px;padding:22px 24px;margin:22px 0}
+.plain .tag{font-family:"Bricolage Grotesque",sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;display:block;margin-bottom:9px}
+.plain p{margin:0 0 .85em;max-width:60ch}
+.plain p:last-child{margin-bottom:0}
+
+/* funnel steps */
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:24px 0}
+ol.steps>li{counter-increment:s;position:relative;padding:0 0 0 52px;margin:0 0 26px}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:1px;width:32px;height:32px;border-radius:50%;
+  background:var(--accent-soft);color:var(--accent-ink);font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+  font-size:14px;display:grid;place-items:center}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) ol.steps>li::before{color:var(--accent-ink)}}
+ol.steps h3{margin:0 0 6px;font-size:17px}
+ol.steps p{margin:0 0 8px;font-size:16px;color:var(--ink-soft);max-width:62ch}
+.count{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:13px;background:var(--rule-soft);
+  padding:3px 9px;border-radius:2px;font-weight:600}
+.count.drop{background:var(--fail-soft);color:var(--fail)}
+.count.keep{background:var(--pass-soft);color:var(--pass)}
+.why{font-size:14.5px;color:var(--ink-faint);border-left:2px solid var(--rule);padding-left:13px;margin:9px 0 0;max-width:60ch}
+
+.tbl-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--rule);border-radius:3px;background:var(--raised)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:480px}
+th,td{padding:9px 15px;text-align:left;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+thead th{font-family:"Bricolage Grotesque",sans-serif;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;background:var(--rule-soft)}
+tbody tr:last-child td{border-bottom:0}
+td.k{font-family:"JetBrains Mono",monospace;font-size:12.5px;white-space:nowrap}
+
+pre{background:var(--raised);border:1px solid var(--rule);border-radius:3px;padding:18px 20px;overflow-x:auto;
+  font-family:"JetBrains Mono",monospace;font-size:12.5px;line-height:1.7;margin:20px 0}
+pre .c{color:var(--ink-faint)}
+pre .v{color:var(--accent-ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) pre .v{color:var(--accent)}}
+
+.check{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;margin:22px 0}
+.check-row{background:var(--raised);padding:15px 18px;display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start}
+.check-row .m{font-family:"JetBrains Mono",monospace;font-weight:600;font-size:15px}
+.check-row .m.ok{color:var(--pass)}
+.check-row .m.no{color:var(--fail)}
+.check-row p{margin:0;font-size:15.5px}
+.check-row p.sub{font-size:14px;color:var(--ink-faint);margin-top:3px}
+.note{font-size:14.5px;color:var(--ink-faint);border-left:2px solid var(--rule);padding-left:14px;margin:20px 0;max-width:60ch}
+strong{font-weight:600}
+footer{border-top:1px solid var(--rule);padding:30px 0 56px;color:var(--ink-faint);font-size:14px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <span class="wordmark">SwiftTestPairs<span class="dot">.</span></span>
+    <span class="sub">what you are about to publish</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="hero">
+  <span class="eyebrow">Read this before uploading</span>
+  <h1>Where the data came from</h1>
+  <p class="standfirst">Every filter, every number, and exactly what ends up on Hugging Face — so you can answer any question about it.</p>
+</div>
+
+<!-- 1 WHY -->
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>Why this had to exist</h2></div>
+
+  <div class="plain">
+    <span class="tag">The short version</span>
+    <p>You cannot mark an exam without an answer sheet.</p>
+    <p>To prove a machine writes good tests, you need <em>real tests, written by real engineers, for real code</em> — thousands of them, matched up so you know which test belongs to which file.</p>
+    <p>Java has had exactly this since 2022 (Microsoft's <strong>methods2test</strong>, 780,000 pairs). Swift had nothing. So the benchmark couldn't be run until the answer sheet was built.</p>
+  </div>
+
+  <div class="prose">
+    <p>That is the whole reason this dataset exists. It isn't a scrape for its own sake — it's the measuring instrument, and it had to be built before anything could be measured.</p>
+    <p>It turns out to be useful on its own too: anyone studying Swift testing, training a model, or benchmarking a different tool can use the same pairs. That's why it's worth publishing rather than keeping local.</p>
+  </div>
+</section>
+
+<!-- 2 SOURCES -->
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>Where the raw material came from</h2></div>
+  <p class="lede">Two public collections of open-source Swift, gathered independently by different people using different methods.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Corpus</th><th>How it was collected</th><th>Files</th><th>Licensed</th></tr></thead>
+      <tbody>
+        <tr><td class="k">mvasiliniuc/<br>iva-swift-codeint</td><td>Google BigQuery's public GitHub dataset, 2023</td><td class="k">753,693</td><td class="k">90.4%</td></tr>
+        <tr><td class="k">HuggingFaceTB/<br>stack-edu (Swift)</td><td>Software Heritage → The Stack v2 → quality-filtered</td><td class="k">2,454,309</td><td class="k">26%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p>Using two mattered more than expected. They were collected by different routes, so anything true in <em>both</em> is unlikely to be an artefact of how one was built — which is what makes the findings about Swift's staleness defensible rather than anecdotal.</p>
+  </div>
+
+  <div class="note"><strong>Both are Swift source only.</strong> No Xcode project files, no assets, no <code>Info.plist</code>. That single fact shaped everything downstream — it's why only SwiftPM packages could ever be verified.</div>
+</section>
+
+<!-- 3 THE PROCESS -->
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>The seven steps, and why each one</h2></div>
+
+  <ol class="steps">
+    <li>
+      <h3>Load everything</h3>
+      <p>Both corpora into one database. <span class="count">3,208,002 files</span></p>
+      <p class="why">DuckDB, because it reads compressed files directly without unpacking 4 GB first.</p>
+    </li>
+    <li>
+      <h3>Keep only permissively licensed code</h3>
+      <p>MIT, Apache-2.0, BSD, ISC and similar. Everything else dropped. <span class="count drop">− 2.7M files</span></p>
+      <p class="why"><strong>Why:</strong> GPL code carries obligations that would follow anyone who used the dataset. Unlicensed code is "all rights reserved" by default — not free to use, whatever people assume.</p>
+    </li>
+    <li>
+      <h3>Remove vendored third-party trees</h3>
+      <p>Anything under <code>Pods/</code>, <code>Carthage/</code>, <code>vendor/</code>, <code>ThirdParty/</code>.</p>
+      <p class="why"><strong>Why:</strong> An MIT-licensed repository routinely contains other people's libraries. Those aren't the project's own code, and pairing against them would be meaningless.</p>
+    </li>
+    <li>
+      <h3>Sort every file into three buckets</h3>
+      <p><strong>TEST</strong> (imports XCTest and has test methods), <strong>TEST_SUPPORT</strong> (mocks and fixtures), <strong>SOURCE</strong> (everything else).</p>
+      <p class="why"><strong>Why the middle bucket:</strong> mocks live in test folders but aren't tests. Counting them as tests would inflate every number.</p>
+    </li>
+    <li>
+      <h3>Match each test to the code it tests</h3>
+      <p>By naming convention — <code>FooTests.swift</code> → <code>Foo.swift</code> — plus an index of which file declares which type, for the cases where they don't line up. <span class="count">23,957 pairs</span></p>
+      <p class="why">The declaration index only added 4.4%. Swift projects follow one-type-per-file more strictly than expected.</p>
+    </li>
+    <li>
+      <h3>Remove duplicates — twice</h3>
+      <p>Exact duplicates first, then near-duplicates by similarity. <span class="count drop">− 3,156 pairs</span></p>
+      <p class="why"><strong>Why this is not optional:</strong> the two corpora overlap 62.6% at pair level. Left in, the same test would land on both sides of a train/test split and any model trained on it would be scored on work it had already seen.</p>
+    </li>
+    <li>
+      <h3>Split by repository, never by file</h3>
+      <p>80/10/10 into train / validation / test. <span class="count keep">20,801 pairs</span></p>
+      <p class="why"><strong>Why:</strong> files from one project share conventions and helpers. Splitting by file would leak a project's style across the boundary. Split by repo, and a project is wholly on one side. Verified: zero pairs straddle.</p>
+    </li>
+  </ol>
+
+  <div class="note">Then one extra pass: every pair whose repository has its own <code>Package.swift</code> was <strong>actually built</strong> with <code>swift build --build-tests</code>. 569 passed. Those are marked <code>tier 2</code> — the only ones anyone should benchmark on.</div>
+</section>
+
+<!-- 4 WHAT A ROW IS -->
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>What one row actually contains</h2></div>
+  <p class="lede">A real row from the file you're about to upload.</p>
+
+<pre><span class="c">pair_id                 </span>5e25725414748dc6c830448ff6cffe21
+<span class="c">source_corpus           </span>iva
+<span class="c">repo_name               </span><span class="v">Flinesoft/HandySwift</span>
+<span class="c">source_path             </span><span class="v">Sources/HandySwift/Extensions/CollectionExt.swift</span>
+<span class="c">test_path               </span><span class="v">Tests/HandySwiftTests/Extensions/CollectionExtTests.swift</span>
+<span class="c">target_type             </span>CollectionExt
+<span class="c">source_content_md5      </span>2c7b3a27d616bbf7c3825433b73b67e5
+<span class="c">test_content_md5        </span>fe65dec2be7573ae21e24c3a6d5865a5
+<span class="c">source_bytes            </span>946
+<span class="c">test_bytes              </span>1215
+<span class="c">n_assertions            </span>11
+<span class="c">n_test_methods          </span>3
+<span class="c">license                 </span><span class="v">MIT</span>
+<span class="c">test_uses_swift_testing </span>False
+<span class="c">has_legacy_swift        </span>False
+<span class="c">join_method             </span>filename
+<span class="c">tier                    </span><span class="v">2</span>   <span class="c">← verified to compile</span>
+<span class="c">split                   </span>test</pre>
+
+  <div class="plain">
+    <span class="tag">Notice what is missing</span>
+    <p><strong>There is no code in the row.</strong> Only where to find it, a fingerprint to check it's the right file, and what we measured.</p>
+    <p>That is deliberate. The Swift code belongs to the people who wrote it and is already published by others. What didn't exist — and what you built — is the <em>matching</em>.</p>
+    <p>It's also why the whole dataset is 3.2 MB instead of 95 MB, and why there's no licensing problem with publishing it.</p>
+  </div>
+
+  <div class="prose">
+    <p>The included <code>resolve.py</code> rebuilds the real files from the two public corpora and checks each one against its fingerprint. It was tested on all 569 verified pairs: every one resolved, every fingerprint matched.</p>
+  </div>
+</section>
+
+<!-- 5 WHAT UPLOADS -->
+<section>
+  <div class="sec-head"><span class="sec-num">05</span><h2>What actually uploads</h2></div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>File</th><th>Size</th><th>What it is</th></tr></thead>
+      <tbody>
+        <tr><td class="k">swifttestpairs.parquet</td><td class="k">3.21 MB</td><td>The dataset. 20,801 rows, 20 columns.</td></tr>
+        <tr><td class="k">swifttestpairs.jsonl</td><td class="k">12.11 MB</td><td>Same data as line-delimited JSON, for convenience.</td></tr>
+        <tr><td class="k">README.md</td><td class="k">6 KB</td><td>The dataset card — what Hugging Face shows as the page.</td></tr>
+        <tr><td class="k">resolve.py</td><td class="k">2 KB</td><td>Rebuilds the real Swift files from the two public corpora.</td></tr>
+        <tr><td class="k">stats.json</td><td class="k">&lt;1 KB</td><td>Summary counts.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Splits and licences inside it</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Split</th><th>Pairs</th><th>Licence</th><th>Pairs</th></tr></thead>
+      <tbody>
+        <tr><td>train</td><td class="k">16,654</td><td>MIT</td><td class="k">15,485</td></tr>
+        <tr><td>validation</td><td class="k">1,997</td><td>Apache-2.0</td><td class="k">3,373</td></tr>
+        <tr><td>test</td><td class="k">2,150</td><td>BSD-3 / BSD-2 / other</td><td class="k">1,943</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 6 CLAIMS -->
+<section>
+  <div class="sec-head"><span class="sec-num">06</span><h2>What you can and can't say about it</h2></div>
+
+  <div class="check">
+    <div class="check-row"><span class="m ok">✓</span><div>
+      <p><strong>"The first public Swift source-to-test pair dataset."</strong></p>
+      <p class="sub">Checked. Java, Python and Julia have equivalents; Swift had none.</p></div></div>
+    <div class="check-row"><span class="m ok">✓</span><div>
+      <p><strong>"Applies the methods2test (MSR 2022) methodology to Swift."</strong></p>
+      <p class="sub">Accurate, and stronger than claiming novelty — it shows you know the field.</p></div></div>
+    <div class="check-row"><span class="m ok">✓</span><div>
+      <p><strong>"20,801 pairs from 3.2M files; 569 verified to compile on Swift 6.4."</strong></p>
+      <p class="sub">All measured, all reproducible from the published pipeline.</p></div></div>
+    <div class="check-row"><span class="m ok">✓</span><div>
+      <p><strong>"Only 2.7% of real-world Swift test pairs still compile."</strong></p>
+      <p class="sub">The most interesting thing here. Confirmed across two independent corpora.</p></div></div>
+    <div class="check-row"><span class="m no">✕</span><div>
+      <p><strong>Don't say it's training data.</strong></p>
+      <p class="sub">0.6% use Swift Testing, 7.2% contain Swift 2/3 syntax. Train on it and you teach a model the dialect Apple is retiring. It is a <em>benchmark</em>.</p></div></div>
+    <div class="check-row"><span class="m no">✕</span><div>
+      <p><strong>Don't quote costs.</strong></p>
+      <p class="sub">The tool under-reports spend roughly 4× — reasoning tokens are billed but never appear in its usage figures. The other numbers are safe; this one isn't.</p></div></div>
+    <div class="check-row"><span class="m no">✕</span><div>
+      <p><strong>Don't call the licence labels a guarantee.</strong></p>
+      <p class="sub">They're repository-level. An MIT repo can still contain third-party code under other terms. The card says so; say the same.</p></div></div>
+  </div>
+
+  <div class="note"><strong>One thing to settle first:</strong> publishing is public and effectively permanent. You were going to check your employment agreement before pressing the button — that's still the right order.</div>
+</section>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    <p>Sources: <strong>mvasiliniuc/iva-swift-codeint</strong> (BigQuery, 2023) and <strong>HuggingFaceTB/stack-edu</strong> (Software Heritage → The Stack v2). Per-row licences are in the <code>license</code> column. Built with DuckDB; verification with <code>swift build --build-tests</code> on Swift 6.4.</p>
+  </div>
+</footer>
+
+</div>

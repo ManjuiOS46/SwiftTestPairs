@@ -1,0 +1,152 @@
+[
+ {
+  "submitted": 5,
+  "all_together_ok": false,
+  "survivors": 3,
+  "repo": "Altece__Reggie"
+ },
+ {
+  "submitted": 1,
+  "all_together_ok": true,
+  "survivors": 1,
+  "repo": "JJC1138__tiny-events"
+ },
+ {
+  "submitted": 5,
+  "all_together_ok": true,
+  "survivors": 5,
+  "repo": "Michael-Vorontsov__ResultPromises"
+ },
+ {
+  "submitted": 6,
+  "all_together_ok": false,
+  "survivors": 5,
+  "repo": "OlegKetrar__TaskKit"
+ },
+ {
+  "submitted": 5,
+  "all_together_ok": true,
+  "survivors": 5,
+  "repo": "Szaq__BinarySwift"
+ },
+ {
+  "submitted": 2,
+  "all_together_ok": true,
+  "survivors": 2,
+  "repo": "YOCKOW__SwiftTimeSpecification"
+ },
+ {
+  "submitted": 7,
+  "all_together_ok": true,
+  "survivors": 7,
+  "repo": "a2__MessagePack.swift"
+ },
+ {
+  "submitted": 2,
+  "all_together_ok": true,
+  "survivors": 2,
+  "repo": "abdullahselek__Lighty"
+ },
+ {
+  "submitted": 1,
+  "all_together_ok": true,
+  "survivors": 1,
+  "repo": "asensei__Result"
+ },
+ {
+  "submitted": 17,
+  "all_together_ok": true,
+  "survivors": 17,
+  "repo": "davecom__SwiftGraph"
+ },
+ {
+  "submitted": 3,
+  "all_together_ok": true,
+  "survivors": 3,
+  "repo": "devxoul__Carte"
+ },
+ {
+  "submitted": 1,
+  "all_together_ok": true,
+  "survivors": 1,
+  "repo": "devxoul__SwiftyImage"
+ },
+ {
+  "submitted": 40,
+  "all_together_ok": true,
+  "survivors": 40,
+  "repo": "elegion__ios-Flamingo"
+ },
+ {
+  "submitted": 10,
+  "all_together_ok": true,
+  "survivors": 10,
+  "repo": "jflinter__Dwifft"
+ },
+ {
+  "submitted": 5,
+  "all_together_ok": true,
+  "survivors": 5,
+  "repo": "kean__Pill"
+ },
+ {
+  "submitted": 17,
+  "all_together_ok": false,
+  "survivors": 4,
+  "repo": "kolyasev__SwiftJSONRPC"
+ },
+ {
+  "submitted": 26,
+  "all_together_ok": true,
+  "survivors": 26,
+  "repo": "mixpanel__mixpanel-swift"
+ },
+ {
+  "submitted": 1,
+  "all_together_ok": true,
+  "survivors": 1,
+  "repo": "nh7a__Geohash"
+ },
+ {
+  "submitted": 7,
+  "all_together_ok": false,
+  "survivors": 2,
+  "repo": "osteslag__Changeset"
+ },
+ {
+  "submitted": 18,
+  "all_together_ok": true,
+  "survivors": 18,
+  "repo": "richardpiazza__MiseEnPlace"
+ },
+ {
+  "submitted": 1,
+  "all_together_ok": true,
+  "survivors": 1,
+  "repo": "seanmcneil__Thrimer"
+ },
+ {
+  "submitted": 25,
+  "all_together_ok": true,
+  "survivors": 25,
+  "repo": "stevebrambilla__autolayout-expressions"
+ },
+ {
+  "submitted": 1,
+  "all_together_ok": true,
+  "survivors": 1,
+  "repo": "tomlokhorst__swift-cancellationtoken"
+ },
+ {
+  "submitted": 18,
+  "all_together_ok": true,
+  "survivors": 18,
+  "repo": "yoichitgy__Swinject"
+ },
+ {
+  "submitted": 13,
+  "all_together_ok": true,
+  "survivors": 13,
+  "repo": "yume190__JSONDecodeKit"
+ }
+]

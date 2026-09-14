@@ -1,0 +1,602 @@
+<title>Testing the Test Writer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --paper:#F5F6F8; --raised:#FFFFFF; --ink:#151922; --ink-soft:#4A5060; --ink-faint:#767D8D;
+  --rule:#DFE2E8; --rule-soft:#EAECF0;
+  --accent:#E8562A; --accent-soft:#FBE7E0; --accent-ink:#A8360F;
+  --pass:#2F7D5B; --pass-soft:#E1F0E8;
+  --warn:#9A6B1F; --warn-soft:#F6EDDC;
+  --fail:#7D2E28; --fail-soft:#F4E3E1;
+  --shadow:0 1px 2px rgba(21,25,34,.05),0 8px 24px -12px rgba(21,25,34,.18);
+  --measure:66ch;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101319; --raised:#171C25; --ink:#E8EAEF; --ink-soft:#A6ADBB; --ink-faint:#79808F;
+    --rule:#252B37; --rule-soft:#1E242E;
+    --accent:#FF7A52; --accent-soft:#2C1A14; --accent-ink:#FFB79E;
+    --pass:#5FBE90; --pass-soft:#15271F;
+    --warn:#D5A253; --warn-soft:#261F12;
+    --fail:#E08A80; --fail-soft:#2A1917;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101319; --raised:#171C25; --ink:#E8EAEF; --ink-soft:#A6ADBB; --ink-faint:#79808F;
+  --rule:#252B37; --rule-soft:#1E242E;
+  --accent:#FF7A52; --accent-soft:#2C1A14; --accent-ink:#FFB79E;
+  --pass:#5FBE90; --pass-soft:#15271F;
+  --warn:#D5A253; --warn-soft:#261F12;
+  --fail:#E08A80; --fail-soft:#2A1917;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,serif; font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;text-wrap:balance;letter-spacing:-.02em}
+code,kbd,.mono,.num{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+.prose{max-width:var(--measure)}
+.prose p{margin:0 0 1.1em}
+.prose p:last-child{margin-bottom:0}
+
+/* ── header ─────────────────────────────────────────── */
+header.top{border-bottom:1px solid var(--rule);background:var(--raised)}
+.top-in{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:baseline;padding:16px 28px;max-width:1100px;margin:0 auto}
+.wordmark{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:16px;letter-spacing:-.01em}
+.wordmark .dot{color:var(--accent)}
+nav.sections{display:flex;flex-wrap:wrap;gap:4px 18px;margin-left:auto;font-family:"Bricolage Grotesque",sans-serif;font-size:13px}
+nav.sections a{color:var(--ink-faint);text-decoration:none;padding:2px 0;border-bottom:1.5px solid transparent}
+nav.sections a:hover,nav.sections a:focus-visible{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* ── hero ───────────────────────────────────────────── */
+.hero{padding:64px 0 40px}
+.eyebrow{font-family:"Bricolage Grotesque",sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:600}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .eyebrow{color:var(--accent)}}
+:root[data-theme="dark"] .eyebrow{color:var(--accent)}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.02;font-weight:800;margin:14px 0 0}
+.standfirst{font-size:clamp(18px,2.2vw,21px);color:var(--ink-soft);max-width:58ch;margin:20px 0 0;font-style:italic}
+
+.headline-stat{display:flex;flex-wrap:wrap;gap:0;margin:40px 0 0;border:1px solid var(--rule);border-radius:3px;overflow:hidden;background:var(--raised)}
+.hs-cell{flex:1 1 190px;padding:22px 24px;border-right:1px solid var(--rule)}
+.hs-cell:last-child{border-right:0}
+.hs-num{font-family:"Bricolage Grotesque",sans-serif;font-size:34px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.hs-lab{font-family:"Bricolage Grotesque",sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-top:8px}
+.hs-cell.lead{background:var(--accent-soft)}
+.hs-cell.lead .hs-num{color:var(--accent-ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hs-cell.lead .hs-num{color:var(--accent-ink)}}
+
+/* ── sections ───────────────────────────────────────── */
+section{padding:52px 0;border-top:1px solid var(--rule-soft)}
+.sec-head{display:flex;gap:14px;align-items:baseline;margin:0 0 22px}
+.sec-num{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--accent);font-weight:600;padding-top:6px}
+h2{font-size:clamp(26px,3.4vw,34px);font-weight:800;margin:0;line-height:1.12}
+h3{font-size:19px;font-weight:600;margin:32px 0 10px}
+.lede{font-size:19px;color:var(--ink-soft);max-width:var(--measure)}
+
+/* ── eli5 callout ───────────────────────────────────── */
+.eli5{background:var(--raised);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:3px;padding:24px 26px;margin:24px 0}
+.eli5 .tag{font-family:"Bricolage Grotesque",sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;display:block;margin-bottom:10px}
+.eli5 p{margin:0 0 .9em;max-width:60ch}
+.eli5 p:last-child{margin-bottom:0}
+
+/* ── figures ────────────────────────────────────────── */
+figure{margin:30px 0;padding:0}
+figure svg{display:block;width:100%;max-width:100%;height:auto;color:var(--ink)}
+figcaption{font-size:14px;color:var(--ink-faint);margin-top:12px;max-width:60ch;font-style:italic}
+.fig-box{background:var(--raised);border:1px solid var(--rule);border-radius:3px;padding:26px 22px;overflow-x:auto}
+
+/* ── tables ─────────────────────────────────────────── */
+.tbl-wrap{overflow-x:auto;margin:24px 0;border:1px solid var(--rule);border-radius:3px;background:var(--raised)}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:520px}
+th,td{padding:11px 16px;text-align:right;border-bottom:1px solid var(--rule-soft)}
+th:first-child,td:first-child{text-align:left}
+thead th{font-family:"Bricolage Grotesque",sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;background:var(--rule-soft)}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+tr.spotlight td{background:var(--accent-soft);font-weight:600}
+tr.spotlight td:first-child{color:var(--accent-ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) tr.spotlight td:first-child{color:var(--accent-ink)}}
+
+/* ── chips ──────────────────────────────────────────── */
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:"JetBrains Mono",monospace;font-size:12px;padding:2px 9px;border-radius:2px;font-weight:600;white-space:nowrap}
+.chip.pass{background:var(--pass-soft);color:var(--pass)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.fail{background:var(--fail-soft);color:var(--fail)}
+
+/* ── finding cards ──────────────────────────────────── */
+.findings{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;margin:26px 0}
+.finding{background:var(--raised);padding:22px 20px}
+.finding .fnum{font-family:"Bricolage Grotesque",sans-serif;font-size:29px;font-weight:800;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+.finding .ftitle{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:15px;margin:9px 0 6px}
+.finding p{font-size:14.5px;color:var(--ink-soft);margin:0;line-height:1.5}
+
+/* ── bug list ───────────────────────────────────────── */
+ol.bugs{list-style:none;counter-reset:b;padding:0;margin:22px 0;max-width:var(--measure)}
+ol.bugs li{counter-increment:b;position:relative;padding:11px 0 11px 46px;border-bottom:1px solid var(--rule-soft);font-size:15.5px}
+ol.bugs li:last-child{border-bottom:0}
+ol.bugs li::before{content:counter(b,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--fail);font-weight:600}
+
+/* ── coverage bars ──────────────────────────────────── */
+.cov{display:grid;gap:14px;margin:24px 0;max-width:640px}
+.cov-row{display:grid;grid-template-columns:118px 1fr 62px;gap:14px;align-items:center}
+.cov-lab{font-family:"Bricolage Grotesque",sans-serif;font-size:14px;font-weight:600}
+.cov-track{height:26px;background:var(--rule-soft);border-radius:2px;overflow:hidden}
+.cov-fill{height:100%;border-radius:2px}
+.cov-val{font-family:"JetBrains Mono",monospace;font-size:14px;font-variant-numeric:tabular-nums;text-align:right}
+
+.two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin:26px 0}
+.note{font-size:14.5px;color:var(--ink-faint);border-left:2px solid var(--rule);padding-left:14px;margin:22px 0;max-width:60ch}
+strong{font-weight:600}
+.accent{color:var(--accent)}
+a{color:var(--accent-ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) a{color:var(--accent)}}
+:root[data-theme="dark"] a{color:var(--accent)}
+footer{border-top:1px solid var(--rule);padding:34px 0 60px;color:var(--ink-faint);font-size:14px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <span class="wordmark">SwiftTestPairs<span class="dot">.</span></span>
+    <nav class="sections">
+      <a href="#idea">The idea</a>
+      <a href="#dataset">Dataset</a>
+      <a href="#flow">How it runs</a>
+      <a href="#forge">TestForge</a>
+      <a href="#results">Results</a>
+      <a href="#local">On-device</a>
+      <a href="#findings">Findings</a>
+      <a href="#lessons">Lessons</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="hero">
+  <span class="eyebrow">Swift · test generation · benchmark</span>
+  <h1>Can a machine write<br>tests as well as we do?</h1>
+  <p class="standfirst">We built a dataset nobody had built, pointed an AI test generator at 104 real open-source projects, and measured it against the engineers who wrote the code.</p>
+  <div class="headline-stat">
+    <div class="hs-cell lead"><div class="hs-num">79.3%</div><div class="hs-lab">TestForge coverage</div></div>
+    <div class="hs-cell"><div class="hs-num">79.4%</div><div class="hs-lab">Human coverage</div></div>
+    <div class="hs-cell"><div class="hs-num">20,801</div><div class="hs-lab">Test pairs published</div></div>
+    <div class="hs-cell"><div class="hs-num">5,263</div><div class="hs-lab">Test cases written</div></div>
+  </div>
+</div>
+
+<!-- ═══ 1 THE IDEA ═══ -->
+<section id="idea">
+  <div class="sec-head"><span class="sec-num">01</span><h2>The idea, explained simply</h2></div>
+
+  <div class="eli5">
+    <span class="tag">Explain it like I'm five</span>
+    <p>Imagine a school exam. Real engineers already sat it: they wrote code, then wrote <em>tests</em> — little programs that check the code behaves properly.</p>
+    <p>We took 104 of those finished exams, <strong>hid the answer sheets</strong>, and asked a robot to sit the same exam. Then we marked both papers.</p>
+    <p>The robot scored the same as the humans.</p>
+  </div>
+
+  <div class="prose">
+    <p>That's the whole project. The complicated parts are only there to make the exam fair: finding real projects, hiding the answers properly, and marking without cheating.</p>
+  </div>
+
+  <figure>
+    <div class="fig-box">
+      <svg viewBox="0 0 760 250" role="img" aria-label="A repository is split into source code and human tests. Only the source goes to TestForge, which writes its own tests. Both sets of tests are then compared.">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 10,5 0,9" fill="currentColor"/>
+          </marker>
+          <marker id="arA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 10,5 0,9" fill="#E8562A"/>
+          </marker>
+        </defs>
+        <g font-family="JetBrains Mono, monospace" font-size="12" fill="currentColor">
+          <rect x="8" y="96" width="132" height="58" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <text x="74" y="120" text-anchor="middle" font-size="13">Real repo</text>
+          <text x="74" y="138" text-anchor="middle" font-size="11" opacity=".65">code + its tests</text>
+
+          <line x1="140" y1="112" x2="222" y2="62" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"/>
+          <line x1="140" y1="138" x2="222" y2="188" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"/>
+          <text x="150" y="80" font-size="10.5" opacity=".7">source</text>
+          <text x="150" y="180" font-size="10.5" opacity=".7">tests — hidden</text>
+
+          <rect x="226" y="36" width="128" height="52" rx="3" fill="none" stroke="#E8562A" stroke-width="1.6"/>
+          <text x="290" y="58" text-anchor="middle" font-size="12.5" fill="#E8562A">Source only</text>
+          <text x="290" y="75" text-anchor="middle" font-size="10.5" fill="#E8562A" opacity=".8">what the robot sees</text>
+
+          <rect x="226" y="162" width="128" height="52" rx="3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 3"/>
+          <text x="290" y="184" text-anchor="middle" font-size="12.5">Human tests</text>
+          <text x="290" y="201" text-anchor="middle" font-size="10.5" opacity=".7">the answer sheet</text>
+
+          <line x1="354" y1="62" x2="432" y2="62" stroke="#E8562A" stroke-width="1.6" marker-end="url(#arA)"/>
+          <rect x="436" y="36" width="130" height="52" rx="3" fill="none" stroke="#E8562A" stroke-width="1.6"/>
+          <text x="501" y="58" text-anchor="middle" font-size="12.5" fill="#E8562A">TestForge</text>
+          <text x="501" y="75" text-anchor="middle" font-size="10.5" fill="#E8562A" opacity=".8">writes its own</text>
+
+          <line x1="566" y1="62" x2="640" y2="104" stroke="#E8562A" stroke-width="1.6" marker-end="url(#arA)"/>
+          <line x1="354" y1="188" x2="640" y2="146" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ar)"/>
+
+          <rect x="644" y="96" width="108" height="58" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <text x="698" y="120" text-anchor="middle" font-size="13">Compare</text>
+          <text x="698" y="138" text-anchor="middle" font-size="11" opacity=".65">coverage</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>The benchmark in one picture. The human tests are moved out of the repository before TestForge ever runs, so it starts from source code alone — then both sets are measured the same way.</figcaption>
+  </figure>
+
+  <div class="note">Getting this wrong is easy. In 15% of our first attempt the tests weren't properly hidden, because the code only looked for a folder literally named <code>Tests/</code>. Those runs were thrown away.</div>
+</section>
+
+<!-- ═══ 2 DATASET ═══ -->
+<section id="dataset">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Building the dataset</h2></div>
+  <p class="lede">To mark the exam you need answer sheets. Swift had none, so we made them.</p>
+
+  <div class="eli5">
+    <span class="tag">Explain it like I'm five</span>
+    <p>Somewhere on the internet there are millions of Swift files. Some are <em>recipes</em> (the code). Some are <em>taste-tests</em> (the tests that check the recipe).</p>
+    <p>They're all jumbled in one giant pile, and nobody had ever matched them up. We did: <strong>20,801 matched pairs</strong>.</p>
+    <p>Java has had this since 2022. Swift didn't have it at all.</p>
+  </div>
+
+  <figure>
+    <div class="fig-box">
+      <svg viewBox="0 0 700 300" role="img" aria-label="A funnel: 3.2 million Swift files reduce to 509,000 permissively licensed, then 23,957 raw pairs, then 20,801 after removing duplicates, of which 569 are verified to compile.">
+        <g font-family="JetBrains Mono, monospace" fill="currentColor">
+          <rect x="30" y="16" width="640" height="40" rx="2" fill="currentColor" opacity=".10"/>
+          <text x="46" y="41" font-size="13">3,208,002 Swift files</text>
+          <text x="654" y="41" font-size="11" text-anchor="end" opacity=".65">two public corpora</text>
+
+          <rect x="88" y="72" width="524" height="40" rx="2" fill="currentColor" opacity=".14"/>
+          <text x="104" y="97" font-size="13">509,041 permissively licensed</text>
+          <text x="596" y="97" font-size="11" text-anchor="end" opacity=".65">MIT, Apache, BSD only</text>
+
+          <rect x="158" y="128" width="384" height="40" rx="2" fill="currentColor" opacity=".18"/>
+          <text x="174" y="153" font-size="13">23,957 raw pairs</text>
+          <text x="526" y="153" font-size="11" text-anchor="end" opacity=".65">matched by name + type</text>
+
+          <rect x="214" y="184" width="272" height="40" rx="2" fill="#E8562A" opacity=".22"/>
+          <text x="230" y="209" font-size="13">20,801 published pairs</text>
+          <text x="470" y="209" font-size="11" text-anchor="end" opacity=".7">duplicates removed</text>
+
+          <rect x="288" y="240" width="124" height="40" rx="2" fill="#E8562A"/>
+          <text x="350" y="265" font-size="13" text-anchor="middle" fill="#FFFFFF">569 verified</text>
+          <text x="424" y="265" font-size="11" opacity=".65">actually compile on Swift 6</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>Every filter is a decision you have to defend. The last one is the uncomfortable finding: of 20,801 real-world Swift test pairs, only 569 — <strong>2.7%</strong> — still build with a current compiler.</figcaption>
+  </figure>
+
+  <h3>What actually gets published</h3>
+  <div class="prose">
+    <p>Not the code. The dataset ships <em>pointers</em>: which repository, which file paths, a fingerprint of each file, and everything we measured. Anyone can rebuild the real files from the two public sources using the included script.</p>
+    <p>That's why it's 3.2 MB instead of 95 MB — and why there's no licensing problem. We're publishing the matching, not somebody else's work.</p>
+  </div>
+</section>
+
+<!-- ═══ 3 CODE FLOW ═══ -->
+<section id="flow">
+  <div class="sec-head"><span class="sec-num">03</span><h2>How the whole thing runs</h2></div>
+  <p class="lede">Three phases, each a gate. If a gate fails you stop there, having spent hours instead of weeks.</p>
+
+  <figure>
+    <div class="fig-box">
+      <svg viewBox="0 0 760 340" role="img" aria-label="Pipeline: two corpora are loaded into DuckDB, classified, joined into pairs, deduplicated and split, then published; separately the verified pairs become benchmark workspaces that TestForge runs against, producing results.">
+        <defs>
+          <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 10,5 0,9" fill="currentColor"/>
+          </marker>
+        </defs>
+        <g font-family="JetBrains Mono, monospace" font-size="11.5" fill="currentColor">
+          <text x="8" y="16" font-size="10.5" fill="#E8562A" font-weight="600">PHASE 1 — SLICE</text>
+          <rect x="8" y="26" width="120" height="46" rx="3" fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <text x="68" y="46" text-anchor="middle">2 corpora</text>
+          <text x="68" y="62" text-anchor="middle" font-size="10" opacity=".65">3.3 GB</text>
+          <line x1="128" y1="49" x2="176" y2="49" stroke="currentColor" stroke-width="1.3" marker-end="url(#ar2)"/>
+          <rect x="180" y="26" width="120" height="46" rx="3" fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <text x="240" y="46" text-anchor="middle">DuckDB</text>
+          <text x="240" y="62" text-anchor="middle" font-size="10" opacity=".65">classify files</text>
+          <line x1="300" y1="49" x2="348" y2="49" stroke="currentColor" stroke-width="1.3" marker-end="url(#ar2)"/>
+          <rect x="352" y="26" width="120" height="46" rx="3" fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <text x="412" y="46" text-anchor="middle">join pairs</text>
+          <text x="412" y="62" text-anchor="middle" font-size="10" opacity=".65">name + type</text>
+
+          <text x="8" y="112" font-size="10.5" fill="#E8562A" font-weight="600">PHASE 2 — DATASET</text>
+          <rect x="8" y="122" width="120" height="46" rx="3" fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <text x="68" y="142" text-anchor="middle">dedup</text>
+          <text x="68" y="158" text-anchor="middle" font-size="10" opacity=".65">exact + near</text>
+          <line x1="128" y1="145" x2="176" y2="145" stroke="currentColor" stroke-width="1.3" marker-end="url(#ar2)"/>
+          <rect x="180" y="122" width="120" height="46" rx="3" fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <text x="240" y="142" text-anchor="middle">split by repo</text>
+          <text x="240" y="158" text-anchor="middle" font-size="10" opacity=".65">no leakage</text>
+          <line x1="300" y1="145" x2="348" y2="145" stroke="currentColor" stroke-width="1.3" marker-end="url(#ar2)"/>
+          <rect x="352" y="122" width="120" height="46" rx="3" fill="#E8562A" opacity=".16" stroke="#E8562A" stroke-width="1.4"/>
+          <text x="412" y="142" text-anchor="middle">20,801 pairs</text>
+          <text x="412" y="158" text-anchor="middle" font-size="10" opacity=".8">published</text>
+          <line x1="412" y1="72" x2="412" y2="118" stroke="currentColor" stroke-width="1.3" marker-end="url(#ar2)"/>
+          <line x1="68" y1="72" x2="68" y2="118" stroke="currentColor" stroke-width="1.3" stroke-dasharray="3 3" marker-end="url(#ar2)"/>
+
+          <text x="8" y="208" font-size="10.5" fill="#E8562A" font-weight="600">PHASE 3 — BENCHMARK</text>
+          <rect x="8" y="218" width="120" height="46" rx="3" fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <text x="68" y="238" text-anchor="middle">569 verified</text>
+          <text x="68" y="254" text-anchor="middle" font-size="10" opacity=".65">they compile</text>
+          <line x1="128" y1="241" x2="176" y2="241" stroke="currentColor" stroke-width="1.3" marker-end="url(#ar2)"/>
+          <rect x="180" y="218" width="120" height="46" rx="3" fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <text x="240" y="238" text-anchor="middle">workspaces</text>
+          <text x="240" y="254" text-anchor="middle" font-size="10" opacity=".65">tests hidden</text>
+          <line x1="300" y1="241" x2="348" y2="241" stroke="currentColor" stroke-width="1.3" marker-end="url(#ar2)"/>
+          <rect x="352" y="218" width="120" height="46" rx="3" fill="none" stroke="#E8562A" stroke-width="1.5"/>
+          <text x="412" y="238" text-anchor="middle" fill="#E8562A">TestForge</text>
+          <text x="412" y="254" text-anchor="middle" font-size="10" fill="#E8562A" opacity=".8">104 repos</text>
+          <line x1="472" y1="241" x2="520" y2="241" stroke="currentColor" stroke-width="1.3" marker-end="url(#ar2)"/>
+          <rect x="524" y="218" width="120" height="46" rx="3" fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <text x="584" y="238" text-anchor="middle">results</text>
+          <text x="584" y="254" text-anchor="middle" font-size="10" opacity=".65">+ coverage</text>
+          <line x1="412" y1="168" x2="412" y2="214" stroke="currentColor" stroke-width="1.3" stroke-dasharray="3 3" marker-end="url(#ar2)"/>
+
+          <text x="8" y="300" font-size="10.5" opacity=".6">Gates: 1a join yield · 1b does it compile · 1c source overlap</text>
+          <text x="8" y="318" font-size="10.5" opacity=".6">A failed gate stops the project before the expensive part.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>The pipeline. The dashed arrows are where one phase hands its output to the next; the gates in Phase 1 exist so a dead end costs an afternoon rather than a fortnight.</figcaption>
+  </figure>
+</section>
+
+<!-- ═══ 4 TESTFORGE ═══ -->
+<section id="forge">
+  <div class="sec-head"><span class="sec-num">04</span><h2>What TestForge actually does</h2></div>
+
+  <div class="eli5">
+    <span class="tag">Explain it like I'm five</span>
+    <p>An AI can write a test, but it never checks whether the test works. It hands you something that <em>looks</em> right and walks away.</p>
+    <p>TestForge doesn't. It writes the test, then <strong>tries to build it</strong>. If it breaks, it reads the error and tries again. If it still can't fix it, it puts the file aside so your project keeps working.</p>
+    <p>That's the difference: the AI writes; TestForge checks.</p>
+  </div>
+
+  <figure>
+    <div class="fig-box">
+      <svg viewBox="0 0 700 280" role="img" aria-label="TestForge loop: index the project, generate a test, compile it. If it compiles it is kept; if not the compiler error is fed back for up to two repairs, after which the file is quarantined.">
+        <defs>
+          <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 10,5 0,9" fill="currentColor"/>
+          </marker>
+          <marker id="arF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 10,5 0,9" fill="#9A6B1F"/>
+          </marker>
+        </defs>
+        <g font-family="JetBrains Mono, monospace" font-size="12" fill="currentColor">
+          <rect x="14" y="102" width="112" height="48" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <text x="70" y="123" text-anchor="middle">Index</text>
+          <text x="70" y="139" text-anchor="middle" font-size="10" opacity=".65">find what's testable</text>
+
+          <line x1="126" y1="126" x2="176" y2="126" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar3)"/>
+
+          <rect x="180" y="102" width="112" height="48" rx="3" fill="#E8562A" opacity=".16" stroke="#E8562A" stroke-width="1.5"/>
+          <text x="236" y="123" text-anchor="middle">Generate</text>
+          <text x="236" y="139" text-anchor="middle" font-size="10" opacity=".85">the model writes</text>
+
+          <line x1="292" y1="126" x2="342" y2="126" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar3)"/>
+
+          <rect x="346" y="102" width="112" height="48" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <text x="402" y="123" text-anchor="middle">Compile</text>
+          <text x="402" y="139" text-anchor="middle" font-size="10" opacity=".65">does it build?</text>
+
+          <line x1="458" y1="116" x2="540" y2="70" stroke="#2F7D5B" stroke-width="1.6" marker-end="url(#ar3)"/>
+          <text x="470" y="86" font-size="10.5" fill="#2F7D5B">yes</text>
+          <rect x="544" y="44" width="112" height="48" rx="3" fill="#2F7D5B" opacity=".16" stroke="#2F7D5B" stroke-width="1.5"/>
+          <text x="600" y="65" text-anchor="middle" fill="#2F7D5B">Kept</text>
+          <text x="600" y="81" text-anchor="middle" font-size="10" fill="#2F7D5B">399 files</text>
+
+          <path d="M402 150 L402 196 L236 196 L236 154" fill="none" stroke="#9A6B1F" stroke-width="1.5" marker-end="url(#arF)"/>
+          <text x="300" y="212" text-anchor="middle" font-size="10.5" fill="#9A6B1F">no — send the compiler error back (×2)</text>
+
+          <line x1="458" y1="138" x2="540" y2="186" stroke="#9A6B1F" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arF)"/>
+          <text x="466" y="176" font-size="10.5" fill="#9A6B1F">still broken</text>
+          <rect x="544" y="160" width="112" height="48" rx="3" fill="none" stroke="#9A6B1F" stroke-width="1.4" stroke-dasharray="4 3"/>
+          <text x="600" y="181" text-anchor="middle" fill="#9A6B1F">Quarantined</text>
+          <text x="600" y="197" text-anchor="middle" font-size="10" fill="#9A6B1F">224 files</text>
+
+          <text x="14" y="256" font-size="10.5" opacity=".6">The loop is the product. Without the compile step you have a chatbot.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>The agent loop. <strong>224 of 623 generated files failed to build</strong> — a third of everything the model produced. Without this loop those would have landed in the repository broken, with nothing to say which ones.</figcaption>
+  </figure>
+
+  <div class="findings">
+    <div class="finding"><div class="fnum">36%</div><div class="ftitle">caught before your build</div><p>Files the model got wrong that never reached the project.</p></div>
+    <div class="finding"><div class="fnum">1,528</div><div class="ftitle">model calls logged</div><p>Every prompt, response, token count and cost recorded for audit.</p></div>
+    <div class="finding"><div class="fnum">$0</div><div class="ftitle">on the local path</div><p>Runs entirely on-device. No code leaves the machine.</p></div>
+    <div class="finding"><div class="fnum">3</div><div class="ftitle">languages supported</div><p>Swift, Objective-C and TypeScript, through one engine.</p></div>
+  </div>
+</section>
+
+<!-- ═══ 5 RESULTS ═══ -->
+<section id="results">
+  <div class="sec-head"><span class="sec-num">05</span><h2>What we measured</h2></div>
+  <p class="lede">Four ways of writing the same tests, marked identically.</p>
+
+  <div class="cov">
+    <div class="cov-row">
+      <span class="cov-lab">Human</span>
+      <div class="cov-track"><div class="cov-fill" style="width:79.4%;background:var(--ink-soft)"></div></div>
+      <span class="cov-val">79.4%</span>
+    </div>
+    <div class="cov-row">
+      <span class="cov-lab">TestForge</span>
+      <div class="cov-track"><div class="cov-fill" style="width:79.3%;background:var(--accent)"></div></div>
+      <span class="cov-val">79.3%</span>
+    </div>
+  </div>
+  <div class="note">Mean line coverage across the 17 repositories where both arms could be measured. Medians: human 86.6%, TestForge 88.4%.</div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Measured on 25 repos</th><th class="num">Human</th><th class="num">Plain prompt</th><th class="num">TestForge</th></tr></thead>
+      <tbody>
+        <tr><td>Test files produced</td><td class="num">156</td><td class="num">132</td><td class="num">237</td></tr>
+        <tr><td>Files compiling together</td><td class="num">—</td><td class="num">123</td><td class="num">216</td></tr>
+        <tr><td>Survival rate</td><td class="num">—</td><td class="num">93.2%</td><td class="num">91.1%</td></tr>
+        <tr><td>Repos with a green build</td><td class="num">18/25</td><td class="num">22/25</td><td class="num">21/25</td></tr>
+        <tr class="spotlight"><td>Mean coverage</td><td class="num">79.4%</td><td class="num">not measured</td><td class="num">79.3%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="prose">
+      <h3>What this proves</h3>
+      <p><strong>Coverage parity with the engineers who wrote the code.</strong> Unattended, at roughly ₹45 per project.</p>
+      <p>And <strong>5,263 test cases against the humans' 4,073</strong> across 90 repositories — 29% more, because it works through the whole project rather than whatever file you happen to paste in.</p>
+    </div>
+    <div class="prose">
+      <h3>What it doesn't</h3>
+      <p><strong>The scaffolding doesn't make the model write better Swift.</strong> A plain prompt's output survives at 93.2%; TestForge's at 91.1%. That gap is noise.</p>
+      <p>What the loop buys is scale and safety — more tests, and a build that can't break. Not better prose from the model.</p>
+    </div>
+  </div>
+
+  <div class="note"><strong>And the honest counterweight:</strong> in 24 of 88 repositories — 27% — TestForge produced nothing usable at all.</div>
+</section>
+
+
+<!-- ═══ 5b ON-DEVICE ═══ -->
+<section id="local">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Does it work without the cloud?</h2></div>
+  <p class="lede">The same tool, the same 19 repositories, driven by a 30-billion-parameter model running entirely on a laptop.</p>
+
+  <div class="eli5">
+    <span class="tag">Explain it like I'm five</span>
+    <p>The robot needs a brain. You can rent a very fast one over the internet, or use a slower one that lives on your own computer.</p>
+    <p>The one on your computer is <strong>free</strong> and never sends your code anywhere — which matters enormously if you work somewhere that code isn't allowed to leave.</p>
+    <p>We tried both on the same work. The local brain is slower, and gives up more often. But when it does the job, it does it just as well.</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>19 repositories, same tool</th><th class="num">Qwen3-Coder 30B<br><span style="font-weight:400;text-transform:none;letter-spacing:0">on-device</span></th><th class="num">Gemini 3.8 Flash<br><span style="font-weight:400;text-transform:none;letter-spacing:0">cloud</span></th></tr></thead>
+      <tbody>
+        <tr><td>Test files kept</td><td class="num">90</td><td class="num">121</td></tr>
+        <tr><td>Quarantined</td><td class="num">48</td><td class="num">13</td></tr>
+        <tr><td>Keep rate</td><td class="num">65%</td><td class="num">90%</td></tr>
+        <tr class="spotlight"><td>Repos producing nothing</td><td class="num">11 of 19</td><td class="num">0 of 19</td></tr>
+        <tr><td>Time</td><td class="num">10.4 hours</td><td class="num">minutes</td></tr>
+        <tr><td>Cost</td><td class="num">₹0</td><td class="num">~₹850</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="prose">
+      <h3>The number that decides it</h3>
+      <p>Gemini produced usable tests on <strong>every single repository</strong>. The local model produced nothing on <strong>58% of them</strong> — and typically spent 20 to 60 minutes discovering that. One repo ran for <strong>127 minutes</strong> and kept nothing.</p>
+    </div>
+    <div class="prose">
+      <h3>But it isn't simply worse</h3>
+      <p>On four repositories the local model <em>beat</em> the cloud one — 35 files against 32 on one, 31 against 25 on another. When it engages properly it writes more, not less.</p>
+      <p>The behaviour is <strong>bimodal</strong>: excellent or empty, rarely in between.</p>
+    </div>
+  </div>
+
+  <figure>
+    <div class="fig-box">
+      <svg viewBox="0 0 700 210" role="img" aria-label="Per-repository comparison showing the local model is bimodal: four repositories where it beat the cloud model, eleven where it produced nothing at all.">
+        <g font-family="JetBrains Mono, monospace" font-size="11" fill="currentColor">
+          <text x="8" y="18" font-size="12" fill="#2F7D5B">Local model WINS — 4 repos</text>
+          <rect x="8" y="28" width="200" height="26" rx="2" fill="#2F7D5B" opacity=".16"/>
+          <text x="18" y="45" font-size="11">ios-Flamingo   35 vs 32</text>
+          <rect x="216" y="28" width="200" height="26" rx="2" fill="#2F7D5B" opacity=".16"/>
+          <text x="226" y="45" font-size="11">mixpanel-swift  31 vs 25</text>
+          <rect x="8" y="60" width="200" height="26" rx="2" fill="#2F7D5B" opacity=".12"/>
+          <text x="18" y="77" font-size="11">Dwifft         11 vs  9</text>
+          <rect x="216" y="60" width="200" height="26" rx="2" fill="#2F7D5B" opacity=".12"/>
+          <text x="226" y="77" font-size="11">ResultPromises   6 vs  5</text>
+
+          <text x="8" y="120" font-size="12" fill="#7D2E28">Local model produces NOTHING — 11 repos</text>
+          <rect x="8" y="130" width="408" height="26" rx="2" fill="#7D2E28" opacity=".14"/>
+          <text x="18" y="147" font-size="11">SwiftGraph  0 kept, 15 quarantined, 127 minutes</text>
+          <rect x="8" y="162" width="408" height="26" rx="2" fill="#7D2E28" opacity=".10"/>
+          <text x="18" y="179" font-size="11">MessagePack  0 kept,  7 quarantined,  49 minutes</text>
+
+          <line x1="440" y1="20" x2="440" y2="196" stroke="currentColor" stroke-width="1" opacity=".25"/>
+          <text x="458" y="44" font-size="11.5" opacity=".8">Cloud model:</text>
+          <text x="458" y="64" font-size="11.5" opacity=".8">zero repos produced</text>
+          <text x="458" y="84" font-size="11.5" opacity=".8">nothing.</text>
+          <text x="458" y="124" font-size="11.5" opacity=".8">Local model:</text>
+          <text x="458" y="144" font-size="11.5" opacity=".8">either excellent</text>
+          <text x="458" y="164" font-size="11.5" opacity=".8">or empty.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>The same tool, the same repositories, a different brain. Consistency — not raw quality — is what the cloud model buys you.</figcaption>
+  </figure>
+
+  <div class="note"><strong>The honest summary for a workplace that can't send code out:</strong> on-device is viable, not equivalent. Roughly two-thirds the keep rate, half the hit rate, and ten times the wall clock. For code that isn't allowed to leave the building, that trade is usually still worth making — but say the numbers rather than just "it runs locally".</div>
+</section>
+
+<!-- ═══ 7 FINDINGS ═══ -->
+<section id="findings">
+  <div class="sec-head"><span class="sec-num">07</span><h2>The finding we didn't go looking for</h2></div>
+  <p class="lede">Public Swift code is far more out of date than anyone assumes — and that has consequences for every model trained on it.</p>
+
+  <div class="findings">
+    <div class="finding"><div class="fnum">2.7%</div><div class="ftitle">still compile</div><p>Of 20,801 real test pairs, only 569 build on Swift 6.4.</p></div>
+    <div class="finding"><div class="fnum">0.6%</div><div class="ftitle">use Swift Testing</div><p>Apple's current framework, shipped 2024. 126 of 20,801 pairs.</p></div>
+    <div class="finding"><div class="fnum">0.4%</div><div class="ftitle">use async/await</div><p>5 of 1,287 source files. Swift concurrency shipped in 2021.</p></div>
+    <div class="finding"><div class="fnum">7.2%</div><div class="ftitle">are Swift 2 or 3</div><p>Syntax no current compiler will accept at all.</p></div>
+  </div>
+
+  <div class="prose">
+    <p>Each of those was confirmed across <strong>two independently collected corpora</strong> — one scraped via Google BigQuery, one via Software Heritage — so it isn't an artefact of how one dataset was built.</p>
+    <p>The consequence is uncomfortable. Models learn Swift from this material. They will confidently write the dialect it contains: XCTest rather than Swift Testing, synchronous code rather than async, and occasionally syntax that stopped compiling in 2016.</p>
+  </div>
+
+  <div class="note">This is why the benchmark targets XCTest rather than Swift Testing — comparing against a human baseline means speaking the human baseline's language.</div>
+</section>
+
+<!-- ═══ 7 LESSONS ═══ -->
+<section id="lessons">
+  <div class="sec-head"><span class="sec-num">08</span><h2>Eleven bugs that produced plausible wrong answers</h2></div>
+  <p class="lede">Not one of them crashed. Every single one returned a number that looked like a finding.</p>
+
+  <ol class="bugs">
+    <li><code>swift build</code> writes errors to <strong>stdout</strong>; we read stderr and saw 375 blank failures.</li>
+    <li>DuckDB applies <code>USING SAMPLE</code> <strong>before</strong> <code>WHERE</code> — every sample was the wrong size.</li>
+    <li>DuckDB connections aren't thread-safe. Concurrent use returned empty results: <strong>82 phantom missing files</strong>.</li>
+    <li>A database view over 4 GB re-scanned it on every query. Minutes became hours.</li>
+    <li>A join missed one equality check and produced <strong>1,070 pairs spliced from two different corpora</strong>.</li>
+    <li>A build rate measured per-repository was applied to per-file counts. The estimate was <strong>double</strong> the truth.</li>
+    <li>An interrupted run left half-written files that broke every later run — at zero cost, so it looked like a clean failure.</li>
+    <li>Coverage counted the test runner itself, so a project with <strong>no tests read as 99.73% covered</strong>.</li>
+    <li>Totals were read from the wrong part of a report; a blanket <code>except</code> hid the error and <strong>silently disabled the budget cap</strong>.</li>
+    <li>HTTP 429 means rate-limited <em>or</em> out of credit. We retried the second for twenty minutes.</li>
+    <li>Two runs wrote to one filename. The second silently overwrote the first, and the comparison table showed one arm twice.</li>
+  </ol>
+
+  <div class="eli5">
+    <span class="tag">The pattern</span>
+    <p>The tell was almost always a suspiciously round number — <code>$0.0000</code>, zero rows, exactly 100%.</p>
+    <p>A tool that genuinely tried and failed still costs money, still returns rows, still lands somewhere untidy. <strong>Perfectly clean output usually means nothing ran.</strong></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    <p><strong>SwiftTestPairs</strong> — 20,801 Swift source-to-test pairs, applying the methods2test (MSR 2022) methodology to a language that had no equivalent. Built with DuckDB, SwiftSyntax and TestForge. Benchmarked on gemini-3.8-flash and, on-device, on qwen3-coder:30b — four arms in all, marked identically.</p>
+    <p style="margin-top:10px;opacity:.75">Figures on this page are measured, not estimated. Where an arm could not be measured it says so.</p>
+  </div>
+</footer>
+
+</div>

@@ -1,0 +1,152 @@
+[
+ {
+  "repo": "Altece__Reggie",
+  "human_tests": 5,
+  "tests_pass": true,
+  "human_coverage": 56.6
+ },
+ {
+  "repo": "JJC1138__tiny-events",
+  "human_tests": 3,
+  "tests_pass": true,
+  "human_coverage": 86.49
+ },
+ {
+  "repo": "Michael-Vorontsov__ResultPromises",
+  "human_tests": 1,
+  "tests_pass": false,
+  "human_coverage": null
+ },
+ {
+  "repo": "OlegKetrar__TaskKit",
+  "human_tests": 1,
+  "tests_pass": true,
+  "human_coverage": 86.6
+ },
+ {
+  "repo": "Szaq__BinarySwift",
+  "human_tests": 2,
+  "tests_pass": true,
+  "human_coverage": 97.88
+ },
+ {
+  "repo": "YOCKOW__SwiftTimeSpecification",
+  "human_tests": 1,
+  "tests_pass": true,
+  "human_coverage": 54.55
+ },
+ {
+  "repo": "a2__MessagePack.swift",
+  "human_tests": 19,
+  "tests_pass": true,
+  "human_coverage": 93.22
+ },
+ {
+  "repo": "abdullahselek__Lighty",
+  "human_tests": 1,
+  "tests_pass": false,
+  "human_coverage": null
+ },
+ {
+  "repo": "asensei__Result",
+  "human_tests": 2,
+  "tests_pass": true,
+  "human_coverage": 73.85
+ },
+ {
+  "repo": "davecom__SwiftGraph",
+  "human_tests": 26,
+  "tests_pass": true,
+  "human_coverage": 89.17
+ },
+ {
+  "repo": "devxoul__Carte",
+  "human_tests": 1,
+  "tests_pass": true,
+  "human_coverage": 91.78
+ },
+ {
+  "repo": "devxoul__SwiftyImage",
+  "human_tests": 1,
+  "tests_pass": true,
+  "human_coverage": null
+ },
+ {
+  "repo": "elegion__ios-Flamingo",
+  "human_tests": 3,
+  "tests_pass": false,
+  "human_coverage": null
+ },
+ {
+  "repo": "jflinter__Dwifft",
+  "human_tests": 1,
+  "tests_pass": false,
+  "human_coverage": null
+ },
+ {
+  "repo": "kean__Pill",
+  "human_tests": 9,
+  "tests_pass": true,
+  "human_coverage": 95.22
+ },
+ {
+  "repo": "kolyasev__SwiftJSONRPC",
+  "human_tests": 2,
+  "tests_pass": true,
+  "human_coverage": 12.03
+ },
+ {
+  "repo": "mixpanel__mixpanel-swift",
+  "human_tests": 2,
+  "tests_pass": false,
+  "human_coverage": null
+ },
+ {
+  "repo": "nh7a__Geohash",
+  "human_tests": 3,
+  "tests_pass": true,
+  "human_coverage": 64.71
+ },
+ {
+  "repo": "osteslag__Changeset",
+  "human_tests": 1,
+  "tests_pass": true,
+  "human_coverage": 100.0
+ },
+ {
+  "repo": "richardpiazza__MiseEnPlace",
+  "human_tests": 24,
+  "tests_pass": true,
+  "human_coverage": 76.75
+ },
+ {
+  "repo": "seanmcneil__Thrimer",
+  "human_tests": 3,
+  "tests_pass": true,
+  "human_coverage": 100.0
+ },
+ {
+  "repo": "stevebrambilla__autolayout-expressions",
+  "human_tests": 16,
+  "tests_pass": true,
+  "human_coverage": 73.73
+ },
+ {
+  "repo": "tomlokhorst__swift-cancellationtoken",
+  "human_tests": 1,
+  "tests_pass": true,
+  "human_coverage": 97.73
+ },
+ {
+  "repo": "yoichitgy__Swinject",
+  "human_tests": 26,
+  "tests_pass": false,
+  "human_coverage": null
+ },
+ {
+  "repo": "yume190__JSONDecodeKit",
+  "human_tests": 2,
+  "tests_pass": false,
+  "human_coverage": null
+ }
+]

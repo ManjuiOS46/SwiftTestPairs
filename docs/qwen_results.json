@@ -1,0 +1,135 @@
+[
+ {
+  "repo": "JJC1138__tiny-events",
+  "kept": 0,
+  "quarantined": 1,
+  "calls": 3,
+  "seconds": 247
+ },
+ {
+  "repo": "Michael-Vorontsov__ResultPromises",
+  "kept": 6,
+  "quarantined": 0,
+  "calls": 6,
+  "seconds": 328
+ },
+ {
+  "repo": "Altece__Reggie",
+  "kept": 2,
+  "quarantined": 3,
+  "calls": 11,
+  "seconds": 1986
+ },
+ {
+  "repo": "OlegKetrar__TaskKit",
+  "kept": 0,
+  "quarantined": 2,
+  "calls": 6,
+  "seconds": 1723
+ },
+ {
+  "repo": "Szaq__BinarySwift",
+  "kept": 2,
+  "quarantined": 3,
+  "calls": 11,
+  "seconds": 1506
+ },
+ {
+  "repo": "YOCKOW__SwiftTimeSpecification",
+  "kept": 0,
+  "quarantined": 2,
+  "calls": 6,
+  "seconds": 1365
+ },
+ {
+  "repo": "abdullahselek__Lighty",
+  "kept": 2,
+  "quarantined": 0,
+  "calls": 2,
+  "seconds": 256
+ },
+ {
+  "repo": "asensei__Result",
+  "kept": 0,
+  "quarantined": 1,
+  "calls": 3,
+  "seconds": 1375
+ },
+ {
+  "repo": "a2__MessagePack.swift",
+  "kept": 0,
+  "quarantined": 7,
+  "calls": 12,
+  "seconds": 2959
+ },
+ {
+  "repo": "devxoul__Carte",
+  "kept": 1,
+  "quarantined": 2,
+  "calls": 6,
+  "seconds": 1241
+ },
+ {
+  "repo": "devxoul__SwiftyImage",
+  "kept": 0,
+  "quarantined": 1,
+  "calls": 4,
+  "seconds": 1012
+ },
+ {
+  "repo": "elegion__ios-Flamingo",
+  "kept": 35,
+  "quarantined": 0,
+  "calls": 35,
+  "seconds": 4178
+ },
+ {
+  "repo": "davecom__SwiftGraph",
+  "kept": 0,
+  "quarantined": 15,
+  "calls": 34,
+  "seconds": 7625
+ },
+ {
+  "repo": "jflinter__Dwifft",
+  "kept": 11,
+  "quarantined": 0,
+  "calls": 11,
+  "seconds": 1875
+ },
+ {
+  "repo": "kean__Pill",
+  "kept": 0,
+  "quarantined": 3,
+  "calls": 8,
+  "seconds": 2013
+ },
+ {
+  "repo": "mixpanel__mixpanel-swift",
+  "kept": 31,
+  "quarantined": 0,
+  "calls": 31,
+  "seconds": 2867
+ },
+ {
+  "repo": "nh7a__Geohash",
+  "kept": 0,
+  "quarantined": 1,
+  "calls": 3,
+  "seconds": 294
+ },
+ {
+  "repo": "osteslag__Changeset",
+  "kept": 0,
+  "quarantined": 7,
+  "calls": 18,
+  "seconds": 3977
+ },
+ {
+  "repo": "seanmcneil__Thrimer",
+  "kept": 0,
+  "quarantined": 0,
+  "calls": 0,
+  "seconds": 631
+ }
+]

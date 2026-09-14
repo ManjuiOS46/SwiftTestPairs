@@ -1,0 +1,25 @@
+# Downloaded corpora — 3.3 GB, rebuild with scripts/00_fetch.sh
+data/raw/
+
+# Intermediate DuckDB state — rebuildable in ~3 min from data/raw
+data/interim/
+
+# Reconstructed benchmark workspaces — rebuilt by phase3_01_workspace.py
+bench/
+bench-qwen/
+
+# Generated test files from the benchmark runs (59 MB of evidence, kept locally)
+generated/
+
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+
+# Editor / OS
+.DS_Store
+*.bak
+
+# The published dataset itself — lives on Hugging Face, no need to duplicate:
+# https://huggingface.co/datasets/Manju46/swift-test-pairs
+data/release/
