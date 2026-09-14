@@ -128,6 +128,15 @@ external binary via `--draft-provider` / `--repair-provider`.
 Per-row licences are in the dataset's `license` column. Methodology follows
 methods2test (MSR 2022), applied to a language that had no equivalent.
 
+## Licence
+
+The pipeline code in this repository is MIT licensed — see [LICENSE](LICENSE).
+
+That covers the code only. The **dataset** it produces carries the licences of the
+repositories it references: each row records its own in the `license` column, and
+only permissively licensed code (MIT, Apache-2.0, BSD and similar) was included. No
+source code is redistributed here or in the dataset.
+
 ## Citation
 
 ```bibtex
