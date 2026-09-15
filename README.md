@@ -67,7 +67,14 @@ bash scripts/00_fetch.sh                       # ~3.3 GB from Hugging Face
 .venv/bin/python scripts/phase2_03_emit.py     # emit the dataset
 ```
 
-Benchmark reproduction additionally needs [TestForge](#testforge) and a provider key.
+Benchmark reproduction additionally needs [TestForge](#testforge) and a provider key:
+
+```bash
+export TESTFORGE_BIN=/path/to/testforge/.build/debug/testforge
+.venv/bin/python scripts/phase3_01_workspace.py   # build benchmark workspaces
+.venv/bin/python scripts/phase3_02_benchmark.py   # run it
+.venv/bin/python scripts/phase3_04_analyse.py     # recount from disk
+```
 
 ## Layout
 

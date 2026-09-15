@@ -11,7 +11,9 @@ from concurrent.futures import ThreadPoolExecutor
 
 ROOT  = pathlib.Path(__file__).resolve().parent.parent
 BENCH = ROOT/"bench-qwen"
-TF    = "__TESTFORGE_BIN__"
+# Path to the TestForge binary. TestForge is a separate project, so point this
+# at your own build:  export TESTFORGE_BIN=/path/to/.build/debug/testforge
+TF    = os.environ.get("TESTFORGE_BIN", "testforge")
 ENV   = {**os.environ, "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer"}
 MODEL = "qwen3-coder:30b"
 WORKERS = 2          # Ollama serialises generation; extra workers only overlap builds
