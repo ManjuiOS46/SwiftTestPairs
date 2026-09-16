@@ -3,7 +3,8 @@
 **The first public dataset of Swift source↔unit-test pairs — and a benchmark of an
 AI test generator against the engineers who wrote the code.**
 
-📦 **Dataset:** [huggingface.co/datasets/Manju46/swift-test-pairs](https://huggingface.co/datasets/Manju46/swift-test-pairs)
+📦 **Dataset:** [huggingface.co/datasets/Manju46/swift-test-pairs](https://huggingface.co/datasets/Manju46/swift-test-pairs)  
+🐦 **Sibling:** [KotlinTestPairs](https://github.com/ManjuiOS46/KotlinTestPairs) — same methodology, 9,856 Kotlin pairs, and why Kotlin can have no verified tier
 
 ---
 
